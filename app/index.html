@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Japan in Figures — National Statistics Atlas</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="masthead">
+  <p class="kicker">National Statistics Atlas</p>
+  <h1>Japan in Figures</h1>
+  <p class="lede">Population, ageing, prefectures, vital signs and the economy — the numbers that describe one country, in one place.</p>
+  <nav class="nav" aria-label="Sections">
+    <a href="#overview">Overview</a>
+    <a href="#population">Population</a>
+    <a href="#age">Ageing</a>
+    <a href="#prefectures">Prefectures</a>
+    <a href="#vital">Vital signs</a>
+    <a href="#economy">Economy</a>
+  </nav>
+</header>
+
+<main>
+  <section id="overview" class="section">
+    <h2>Overview</h2>
+    <p class="section-note">Japan at a glance, from the latest official estimates.</p>
+    <div class="kpis">
+      <article class="kpi"><p class="kpi-value">123.8<span class="unit"> million</span></p><p class="kpi-label">Population</p><p class="kpi-source">Estimate, 1 Oct 2024</p></article>
+      <article class="kpi"><p class="kpi-value">29.3<span class="unit">%</span></p><p class="kpi-label">Aged 65 and over</p><p class="kpi-source">2024 estimate</p></article>
+      <article class="kpi"><p class="kpi-value">81.09 <span class="sep">/</span> 87.13</p><p class="kpi-label">Life expectancy, men / women</p><p class="kpi-source">Years, 2024</p></article>
+      <article class="kpi"><p class="kpi-value">1.15</p><p class="kpi-label">Total fertility rate</p><p class="kpi-source">Children per woman, 2024</p></article>
+    </div>
+  </section>
+
+  <section id="population" class="section">
+    <h2>Population, 1920–2024</h2>
+    <p class="section-note">Census population in millions, plus the 2024 estimate. Japan grew for most of the twentieth century, peaked in 2008–2010, and has shrunk every year since.</p>
+    <div class="chart-card">
+      <canvas id="popChart" width="960" height="420" aria-label="Line chart of Japan's population, 1920 to 2024"></canvas>
+      <div class="slider-row">
+        <label for="yearSlider">Year</label>
+        <input type="range" id="yearSlider" min="0" max="21" step="1" value="21">
+        <output id="yearReadout" for="yearSlider">2024 — 123.8 million</output>
+      </div>
+      <p class="chart-note">Drag the slider to scrub through the census years.</p>
+    </div>
+  </section>
+
+  <section id="age" class="section">
+    <h2>An ageing country</h2>
+    <p class="section-note">The share of people aged 65 and over rose from under 5% in 1950 to nearly three in ten today — the highest in the world.</p>
+    <div class="split">
+      <div class="chart-card">
+        <h3>Age structure, 2020 Census</h3>
+        <canvas id="ageChart" width="960" height="520" aria-label="Bar chart of population by five-year age group, 2020"></canvas>
+        <p class="chart-note">Thousands of people in each five-year age band.</p>
+      </div>
+      <div class="chart-card">
+        <h3>Share aged 65+, %</h3>
+        <table class="mini-table">
+          <thead><tr><th>Year</th><th>65+ share</th></tr></thead>
+          <tbody id="ageingRows"></tbody>
+        </table>
+        <h3 class="subhead">Age bands, 2024</h3>
+        <ul class="bands">
+          <li><span class="band-label">0–14</span><span class="band-bar" style="--w:11.2%"></span><span class="band-value">11.2%</span></li>
+          <li><span class="band-label">15–64</span><span class="band-bar" style="--w:59.5%"></span><span class="band-value">59.5%</span></li>
+          <li><span class="band-label">65+</span><span class="band-bar" style="--w:29.3%"></span><span class="band-value">29.3%</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="prefectures" class="section">
+    <h2>All 47 prefectures</h2>
+    <p class="section-note">2020 Census population. Tokyo alone holds more than one in nine people in Japan; the smallest prefecture, Tottori, holds fewer than 600,000.</p>
+    <div class="controls">
+      <label class="search-label">Search <input type="search" id="prefSearch" placeholder="Type a prefecture name…" aria-label="Search prefectures by name"></label>
+      <label class="sort-label">Sort by
+        <select id="prefSort">
+          <option value="pop-desc">Population, largest first</option>
+          <option value="pop-asc">Population, smallest first</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </label>
+      <p class="result-count" id="prefCount"></p>
+    </div>
+    <div class="table-wrap">
+      <table class="pref-table">
+        <thead><tr><th>#</th><th>Prefecture</th><th class="num">Population (2020)</th><th class="num">Share of Japan</th></tr></thead>
+        <tbody id="prefRows"></tbody>
+      </table>
+    </div>
+    <p class="chart-note">Total: 126,146,099 people.</p>
+  </section>
+
+  <section id="vital" class="section">
+    <h2>Vital signs, 2024</h2>
+    <p class="section-note">Births, deaths and marriages from the Ministry of Health, Labour and Welfare's Vital Statistics.</p>
+    <div class="kpis">
+      <article class="kpi"><p class="kpi-value">720,988</p><p class="kpi-label">Births</p><p class="kpi-source">Lowest on record</p></article>
+      <article class="kpi"><p class="kpi-value">1,605,298</p><p class="kpi-label">Deaths</p><p class="kpi-source">Highest on record</p></article>
+      <article class="kpi"><p class="kpi-value">−884,310</p><p class="kpi-label">Natural decrease</p><p class="kpi-source">Births minus deaths</p></article>
+      <article class="kpi"><p class="kpi-value">499,999</p><p class="kpi-label">Marriages</p><p class="kpi-source">2024</p></article>
+    </div>
+    <div class="chart-card">
+      <h3>Total fertility rate, children per woman</h3>
+      <canvas id="tfrChart" width="960" height="360" aria-label="Line chart of the total fertility rate, 1970 to 2024"></canvas>
+      <p class="chart-note">The rate has been below the replacement level of 2.07 since 1974.</p>
+    </div>
+  </section>
+
+  <section id="economy" class="section">
+    <h2>Economy, 2024</h2>
+    <p class="section-note">Cabinet Office and Statistics Bureau figures for the year.</p>
+    <div class="kpis">
+      <article class="kpi"><p class="kpi-value">¥609<span class="unit"> trillion</span></p><p class="kpi-label">Nominal GDP</p><p class="kpi-source">Cabinet Office, 2024</p></article>
+      <article class="kpi"><p class="kpi-value">2.5<span class="unit">%</span></p><p class="kpi-label">Unemployment rate</p><p class="kpi-source">Annual average, 2024</p></article>
+      <article class="kpi"><p class="kpi-value">+2.7<span class="unit">%</span></p><p class="kpi-label">Consumer prices</p><p class="kpi-source">Year on year, 2024</p></article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>Figures: Statistics Bureau of Japan, 2020 Census and population estimates (Oct 2024); Ministry of Health, Labour and Welfare, Vital Statistics 2024; Cabinet Office. Compiled November 2026.</p>
+  <p class="footer-note">Japan in Figures is an independent atlas of public statistics. It is not affiliated with any government agency.</p>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
